@@ -7,10 +7,13 @@ on:
   workflow_dispatch:
   
 jobs:
-  example_job:
+  display-variables:
+    name: test
     runs-on: ubuntu-latest
+    environment: dev
     steps:
-      - name: Fetch environment variable
-        run: echo "My secret variable is $FUNCTION_NAME"
-        env:
-          FUNCTION_NAME: ${{ env.FUNCTION_NAME }}
+    - name: Use variables
+      run: |
+        echo "repository variable : $FUNCTION_NAME"
+      env:
+        FUNCTION_NAME: ${{ vars.FUNCTION_NAME }}
