@@ -1,0 +1,20 @@
+name: Example Workflow
+
+on:
+  push:
+    branches:
+      - master  # Adjust the branch name as needed
+  workflow_dispatch:
+    inputs:
+      FUNCTION_NAME:
+        description: 'My secret variable'
+        required: true
+
+jobs:
+  example_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch environment variable
+        run: echo "My secret variable is $FUNCTION_NAME"
+        env:
+          MY_SECRET_VARIABLE: ${{ env.FUNCTION_NAME }}
